@@ -25,9 +25,10 @@ public class LevelManager : MonoBehaviour
 
     public static event System.Action OnDinheiroChange;
 
-
     private void Start()
     {
+        SaveManagerPlayerPrefs.Carregar();
+        StartCoroutine(AutoSave());
         StartCoroutine(RotinaGanhoPassivo());
     }
 
@@ -101,6 +102,15 @@ public class LevelManager : MonoBehaviour
             yield return new WaitForSeconds(1);
             float valor = qntGanhosPassivos * valorGanhoPassivo;
             AddDinheiro(qntGanhosPassivos - 1);
+        }
+    }
+
+    IEnumerator AutoSave()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(5);
+            SaveManagerPlayerPrefs.Salvar();
         }
     }
 }

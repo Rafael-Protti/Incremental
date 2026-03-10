@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameDirector : MonoBehaviour
@@ -8,15 +9,6 @@ public class GameDirector : MonoBehaviour
     public static GameDirector instancia;
     void Awake()
     {
-        if (instancia == null)
-        {
-            instancia = this;
-            DontDestroyOnLoad(gameObject);
-        }
-
-        else
-        {
-            Destroy(instancia);
-        }
+        instancia = this;
     }
 }

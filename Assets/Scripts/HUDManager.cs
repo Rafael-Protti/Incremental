@@ -19,12 +19,17 @@ public class HUDManager : MonoBehaviour
 
     private void Start()
     {
-        AtualizarDinheiro();
         textoOriginaMultiplicador = textoMultiplicadorAtual.text;
-        AtualizarMultiplicador();
         textoOriginaGanhoPassivo = textoGanhoPassivoAtual.text;
-        AtualizarGanhoPassivo();
 
+        Invoke("AtualizarInterface", 0.1f);
+    }
+
+    void AtualizarInterface()
+    {
+        AtualizarDinheiro();
+        AtualizarMultiplicador();
+        AtualizarGanhoPassivo();
     }
 
     public void AtualizarDinheiro()
