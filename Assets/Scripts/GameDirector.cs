@@ -11,6 +11,7 @@ public class GameDirector : MonoBehaviour
         if (instancia == null)
         {
             instancia = this;
+            DontDestroyOnLoad(gameObject);
         }
 
         else
