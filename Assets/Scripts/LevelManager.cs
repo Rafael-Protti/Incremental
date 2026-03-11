@@ -4,12 +4,12 @@ using UnityEngine;
 public class LevelManager : MonoBehaviour
 {
     [Header("Dinheiro coletado no jogo")]
-    public float dinheiro { get; private set; }
+    public float dinheiro;
     [Space]
     [Header("Quantidade de multiplicadores")]
     public int qntMultiplicador; 
     [Header("Quantidade de Ganhos Passivos")]
-    public int qntGanhosPassivos;
+    public int qntGanhoPassivo;
     [Space]
     [Header("Valor do multiplicador")]
     public float valorMultiplicador;
@@ -27,7 +27,8 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
-        SaveManagerPlayerPrefs.Carregar();
+        //SaveManagerPlayerPrefs.Carregar();
+        SaveManager.Carregar();
         StartCoroutine(AutoSave());
         StartCoroutine(RotinaGanhoPassivo());
     }
@@ -76,7 +77,7 @@ public class LevelManager : MonoBehaviour
 
         AddDinheiro(-preco);
 
-        qntGanhosPassivos++;
+        qntGanhoPassivo++;
 
         GameDirector.instancia.hudManager.AtualizarGanhoPassivo();
     }
@@ -90,7 +91,7 @@ public class LevelManager : MonoBehaviour
 
     public float ObtemPrecoGanhoPassivo()
     {
-        float preco = qntGanhosPassivos * precoBaseGanhoPassivo * multiplicadorGanhoPassivo;
+        float preco = qntGanhoPassivo * precoBaseGanhoPassivo * multiplicadorGanhoPassivo;
 
         return preco;
     }
@@ -100,8 +101,8 @@ public class LevelManager : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(1);
-            float valor = qntGanhosPassivos * valorGanhoPassivo;
-            AddDinheiro(qntGanhosPassivos - 1);
+            float valor = qntGanhoPassivo * valorGanhoPassivo;
+            AddDinheiro(qntGanhoPassivo - 1);
         }
     }
 
@@ -110,7 +111,8 @@ public class LevelManager : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(5);
-            SaveManagerPlayerPrefs.Salvar();
+            //SaveManagerPlayerPrefs.Salvar();
+            SaveManager.Salvar();
         }
     }
 }

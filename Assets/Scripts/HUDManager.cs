@@ -47,7 +47,7 @@ public class HUDManager : MonoBehaviour
     public void AtualizarGanhoPassivo()
     {
         textoValorGanhoPassivo.text = GameDirector.instancia.levelManager.ObtemPrecoGanhoPassivo().ToString();
-        float ganho = GameDirector.instancia.levelManager.qntGanhosPassivos * GameDirector.instancia.levelManager.valorGanhoPassivo;
+        float ganho = GameDirector.instancia.levelManager.qntGanhoPassivo * GameDirector.instancia.levelManager.valorGanhoPassivo;
         textoGanhoPassivoAtual.text = textoOriginaGanhoPassivo.Replace("{X}", (ganho - 1).ToString());
     }
 }
